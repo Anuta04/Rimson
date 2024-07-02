@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "Clients",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Login": {
+      "type": "string",
+      "required": true
+    },
+    "Password": {
+      "type": "string",
+      "required": true
+    },
+    "Recovery_emai": {
+      "type": "string",
+      "required": true
+    },
+    "License": {
+      "type": "string",
+      "required": true
+    },
+    "email_list": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::email-address.email-address",
+      "mappedBy": "client"
+    },
+    "tariff_plan": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tariff-plan.tariff-plan"
+    }
+  }
+}

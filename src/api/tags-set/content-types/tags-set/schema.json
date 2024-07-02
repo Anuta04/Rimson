@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tags_sets",
+  "info": {
+    "singularName": "tags-set",
+    "pluralName": "tags-sets",
+    "displayName": "Tags Set",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "tag": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tag.tag",
+      "inversedBy": "tags_sets"
+    },
+    "tariff_plan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tariff-plan.tariff-plan",
+      "inversedBy": "tags_sets"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tags",
+  "info": {
+    "singularName": "tag",
+    "pluralName": "tags",
+    "displayName": "Tags",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "document_name": {
+      "type": "string",
+      "required": true
+    },
+    "short_document_name": {
+      "type": "string",
+      "required": true
+    },
+    "json_data": {
+      "type": "json",
+      "required": true
+    },
+    "tags_sets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tags-set.tags-set",
+      "mappedBy": "tag"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "email_addresses",
+  "info": {
+    "singularName": "email-address",
+    "pluralName": "email-addresses",
+    "displayName": "Email Addresses"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "email_list"
+    }
+  }
+}
