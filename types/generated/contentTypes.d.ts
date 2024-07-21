@@ -362,6 +362,156 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiEmailAddressEmailAddress extends Schema.CollectionType {
+  collectionName: 'email_addresses';
+  info: {
+    singularName: 'email-address';
+    pluralName: 'email-addresses';
+    displayName: 'Email Addresses';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    email: Attribute.String & Attribute.Required;
+    user: Attribute.Relation<
+      'api::email-address.email-address',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::email-address.email-address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::email-address.email-address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTagTag extends Schema.CollectionType {
+  collectionName: 'tags';
+  info: {
+    singularName: 'tag';
+    pluralName: 'tags';
+    displayName: 'Tags';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    document_name: Attribute.String & Attribute.Required;
+    short_document_name: Attribute.String & Attribute.Required;
+    json_data: Attribute.JSON & Attribute.Required;
+    tags_sets: Attribute.Relation<
+      'api::tag.tag',
+      'manyToMany',
+      'api::tags-set.tags-set'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTagsSetTagsSet extends Schema.CollectionType {
+  collectionName: 'tags_sets';
+  info: {
+    singularName: 'tags-set';
+    pluralName: 'tags-sets';
+    displayName: 'Tags Set';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    tags: Attribute.Relation<
+      'api::tags-set.tags-set',
+      'manyToMany',
+      'api::tag.tag'
+    >;
+    tariff_plans: Attribute.Relation<
+      'api::tags-set.tags-set',
+      'manyToMany',
+      'api::tariff-plan.tariff-plan'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tags-set.tags-set',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tags-set.tags-set',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTariffPlanTariffPlan extends Schema.CollectionType {
+  collectionName: 'tariff_plans';
+  info: {
+    singularName: 'tariff-plan';
+    pluralName: 'tariff-plans';
+    displayName: 'Tariff Plan';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String & Attribute.Required;
+    Price: Attribute.Integer;
+    user: Attribute.Relation<
+      'api::tariff-plan.tariff-plan',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    tags_sets: Attribute.Relation<
+      'api::tariff-plan.tariff-plan',
+      'manyToMany',
+      'api::tags-set.tags-set'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tariff-plan.tariff-plan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tariff-plan.tariff-plan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -742,7 +892,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -771,215 +920,28 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    client: Attribute.Relation<
+    recovery_email: Attribute.String & Attribute.Required;
+    email_list: Attribute.Relation<
       'plugin::users-permissions.user',
-      'oneToOne',
-      'api::client.client'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiClientClient extends Schema.CollectionType {
-  collectionName: 'clients';
-  info: {
-    singularName: 'client';
-    pluralName: 'clients';
-    displayName: 'Clients';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Login: Attribute.String & Attribute.Required;
-    Recovery_emai: Attribute.String & Attribute.Required;
-    License: Attribute.String & Attribute.Required;
-    tariff_plan: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'api::tariff-plan.tariff-plan'
-    >;
-    password: Attribute.Password;
-    email_lists: Attribute.Relation<
-      'api::client.client',
-      'manyToMany',
+      'oneToMany',
       'api::email-address.email-address'
     >;
-    users_permissions_user: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiEmailAddressEmailAddress extends Schema.CollectionType {
-  collectionName: 'email_addresses';
-  info: {
-    singularName: 'email-address';
-    pluralName: 'email-addresses';
-    displayName: 'Email Addresses';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    email: Attribute.String & Attribute.Required;
-    clients: Attribute.Relation<
-      'api::email-address.email-address',
-      'manyToMany',
-      'api::client.client'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::email-address.email-address',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::email-address.email-address',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTagTag extends Schema.CollectionType {
-  collectionName: 'tags';
-  info: {
-    singularName: 'tag';
-    pluralName: 'tags';
-    displayName: 'Tags';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    document_name: Attribute.String & Attribute.Required;
-    short_document_name: Attribute.String & Attribute.Required;
-    json_data: Attribute.JSON & Attribute.Required;
-    tags_sets: Attribute.Relation<
-      'api::tag.tag',
-      'manyToMany',
-      'api::tags-set.tags-set'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTagsSetTagsSet extends Schema.CollectionType {
-  collectionName: 'tags_sets';
-  info: {
-    singularName: 'tags-set';
-    pluralName: 'tags-sets';
-    displayName: 'Tags Set';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
     tariff_plans: Attribute.Relation<
-      'api::tags-set.tags-set',
-      'manyToMany',
+      'plugin::users-permissions.user',
+      'oneToMany',
       'api::tariff-plan.tariff-plan'
     >;
-    tags: Attribute.Relation<
-      'api::tags-set.tags-set',
-      'manyToMany',
-      'api::tag.tag'
-    >;
+    license: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::tags-set.tags-set',
+      'plugin::users-permissions.user',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::tags-set.tags-set',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTariffPlanTariffPlan extends Schema.CollectionType {
-  collectionName: 'tariff_plans';
-  info: {
-    singularName: 'tariff-plan';
-    pluralName: 'tariff-plans';
-    displayName: 'Tariff Plan';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Name: Attribute.String & Attribute.Required;
-    Price: Attribute.Integer;
-    tags_sets: Attribute.Relation<
-      'api::tariff-plan.tariff-plan',
-      'manyToMany',
-      'api::tags-set.tags-set'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::tariff-plan.tariff-plan',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::tariff-plan.tariff-plan',
+      'plugin::users-permissions.user',
       'oneToOne',
       'admin::user'
     > &
@@ -997,6 +959,10 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::email-address.email-address': ApiEmailAddressEmailAddress;
+      'api::tag.tag': ApiTagTag;
+      'api::tags-set.tags-set': ApiTagsSetTagsSet;
+      'api::tariff-plan.tariff-plan': ApiTariffPlanTariffPlan;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -1005,11 +971,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::client.client': ApiClientClient;
-      'api::email-address.email-address': ApiEmailAddressEmailAddress;
-      'api::tag.tag': ApiTagTag;
-      'api::tags-set.tags-set': ApiTagsSetTagsSet;
-      'api::tariff-plan.tariff-plan': ApiTariffPlanTariffPlan;
     }
   }
 }

@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -66,11 +65,24 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "client": {
+    "recovery_email": {
+      "type": "string",
+      "required": true
+    },
+    "email_list": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::client.client",
-      "mappedBy": "users_permissions_user"
+      "relation": "oneToMany",
+      "target": "api::email-address.email-address",
+      "mappedBy": "user"
+    },
+    "tariff_plans": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tariff-plan.tariff-plan",
+      "mappedBy": "user"
+    },
+    "license": {
+      "type": "string"
     }
   }
 }

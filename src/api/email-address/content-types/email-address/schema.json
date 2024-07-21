@@ -16,11 +16,11 @@
       "type": "string",
       "required": true
     },
-    "clients": {
+    "user": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::client.client",
-      "inversedBy": "email_lists"
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "email_list"
     }
   }
 }

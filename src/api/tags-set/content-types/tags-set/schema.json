@@ -19,17 +19,17 @@
     "description": {
       "type": "text"
     },
-    "tariff_plans": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tariff-plan.tariff-plan",
-      "inversedBy": "tags_sets"
-    },
     "tags": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "inversedBy": "tags_sets"
+    },
+    "tariff_plans": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tariff-plan.tariff-plan",
+      "mappedBy": "tags_sets"
     }
   }
 }

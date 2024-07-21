@@ -19,11 +19,17 @@
     "Price": {
       "type": "integer"
     },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "tariff_plans"
+    },
     "tags_sets": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::tags-set.tags-set",
-      "mappedBy": "tariff_plans"
+      "inversedBy": "tariff_plans"
     }
   }
 }
