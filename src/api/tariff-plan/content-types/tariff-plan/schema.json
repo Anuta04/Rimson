@@ -21,9 +21,9 @@
     },
     "tags_sets": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::tags-set.tags-set",
-      "mappedBy": "tariff_plan"
+      "mappedBy": "tariff_plans"
     }
   }
 }

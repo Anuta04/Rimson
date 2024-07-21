@@ -771,6 +771,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    client: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::client.client'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -801,18 +806,23 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
   attributes: {
     Login: Attribute.String & Attribute.Required;
-    Password: Attribute.String & Attribute.Required;
     Recovery_emai: Attribute.String & Attribute.Required;
     License: Attribute.String & Attribute.Required;
-    email_list: Attribute.Relation<
-      'api::client.client',
-      'oneToMany',
-      'api::email-address.email-address'
-    >;
     tariff_plan: Attribute.Relation<
       'api::client.client',
       'oneToOne',
       'api::tariff-plan.tariff-plan'
+    >;
+    password: Attribute.Password;
+    email_lists: Attribute.Relation<
+      'api::client.client',
+      'manyToMany',
+      'api::email-address.email-address'
+    >;
+    users_permissions_user: Attribute.Relation<
+      'api::client.client',
+      'oneToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -838,15 +848,16 @@ export interface ApiEmailAddressEmailAddress extends Schema.CollectionType {
     singularName: 'email-address';
     pluralName: 'email-addresses';
     displayName: 'Email Addresses';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     email: Attribute.String & Attribute.Required;
-    client: Attribute.Relation<
+    clients: Attribute.Relation<
       'api::email-address.email-address',
-      'manyToOne',
+      'manyToMany',
       'api::client.client'
     >;
     createdAt: Attribute.DateTime;
@@ -884,7 +895,7 @@ export interface ApiTagTag extends Schema.CollectionType {
     json_data: Attribute.JSON & Attribute.Required;
     tags_sets: Attribute.Relation<
       'api::tag.tag',
-      'oneToMany',
+      'manyToMany',
       'api::tags-set.tags-set'
     >;
     createdAt: Attribute.DateTime;
@@ -911,15 +922,15 @@ export interface ApiTagsSetTagsSet extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     description: Attribute.Text;
-    tag: Attribute.Relation<
+    tariff_plans: Attribute.Relation<
       'api::tags-set.tags-set',
-      'manyToOne',
-      'api::tag.tag'
-    >;
-    tariff_plan: Attribute.Relation<
-      'api::tags-set.tags-set',
-      'manyToOne',
+      'manyToMany',
       'api::tariff-plan.tariff-plan'
+    >;
+    tags: Attribute.Relation<
+      'api::tags-set.tags-set',
+      'manyToMany',
+      'api::tag.tag'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -955,7 +966,7 @@ export interface ApiTariffPlanTariffPlan extends Schema.CollectionType {
     Price: Attribute.Integer;
     tags_sets: Attribute.Relation<
       'api::tariff-plan.tariff-plan',
-      'oneToMany',
+      'manyToMany',
       'api::tags-set.tags-set'
     >;
     createdAt: Attribute.DateTime;

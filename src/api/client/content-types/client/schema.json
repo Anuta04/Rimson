@@ -16,10 +16,6 @@
       "type": "string",
       "required": true
     },
-    "Password": {
-      "type": "string",
-      "required": true
-    },
     "Recovery_emai": {
       "type": "string",
       "required": true
@@ -28,16 +24,25 @@
       "type": "string",
       "required": true
     },
-    "email_list": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::email-address.email-address",
-      "mappedBy": "client"
-    },
     "tariff_plan": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::tariff-plan.tariff-plan"
+    },
+    "password": {
+      "type": "password"
+    },
+    "email_lists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::email-address.email-address",
+      "mappedBy": "clients"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "client"
     }
   }
 }

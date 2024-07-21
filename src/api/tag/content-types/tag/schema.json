@@ -26,9 +26,9 @@
     },
     "tags_sets": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::tags-set.tags-set",
-      "mappedBy": "tag"
+      "mappedBy": "tags"
     }
   }
 }
