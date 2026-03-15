@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация автомобиля</title>
+    <link rel="stylesheet" href="form_style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Регистрация автомобиля</h2>
+        <form id="carForm" netlify>
+            <!-- Марка -->
+            <label for="brand">Марка <span>*</span></label>
+            <select name="brand" id="brand" required>
+                <option value="">-- Выберите марку --</option>
+                <option value="Acura">Acura</option>
+                <option value="Alfa Romeo">Alfa Romeo</option>
+                <option value="Aston Martin">Aston Martin</option>
+                <option value="Audi">Audi</option>
+                <option value="Aurus">Aurus</option>
+                <option value="BAIC">BAIC</option>
+                <option value="Bentley">Bentley</option>
+                <option value="BMW">BMW</option>
+                <option value="Brilliance">Brilliance</option>
+                <option value="Buick">Buick</option>
+                <option value="BYD">BYD</option>
+                <option value="Cadillac">Cadillac</option>
+                <option value="Changan">Changan</option>
+                <option value="Chery">Chery</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Chrysler">Chrysler</option>
+                <option value="Citroën">Citroën</option>
+                <option value="Cupra">Cupra</option>
+                <option value="Dacia">Dacia</option>
+                <option value="Daewoo">Daewoo</option>
+                <option value="Daihatsu">Daihatsu</option>
+                <option value="Datsun">Datsun</option>
+                <option value="DFSK">DFSK</option>
+                <option value="Dodge">Dodge</option>
+                <option value="Dongfeng">Dongfeng</option>
+                <option value="DS Automobiles">DS Automobiles</option>
+                <option value="Exeed">Exeed</option>
+                <option value="FAW">FAW</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Ford">Ford</option>
+                <option value="GAC">GAC</option>
+                <option value="Geely">Geely</option>
+                <option value="Genesis">Genesis</option>
+                <option value="GMC">GMC</option>
+                <option value="Great Wall">Great Wall</option>
+                <option value="Haval">Haval</option>
+                <option value="Honda">Honda</option>
+                <option value="Hummer">Hummer</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Infiniti">Infiniti</option>
+                <option value="Isuzu">Isuzu</option>
+                <option value="JAC">JAC</option>
+                <option value="Jaecoo">Jaecoo</option>
+                <option value="Jaguar">Jaguar</option>
+                <option value="Jeep">Jeep</option>
+                <option value="Jetour">Jetour</option>
+                <option value="Kia">Kia</option>
+                <option value="Koenigsegg">Koenigsegg</option>
+                <option value="Lada">Lada</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Lancia">Lancia</option>
+                <option value="Land Rover">Land Rover</option>
+                <option value="Lexus">Lexus</option>
+                <option value="Li Auto">Li Auto</option>
+                <option value="Lifan">Lifan</option>
+                <option value="Lincoln">Lincoln</option>
+                <option value="Lotus">Lotus</option>
+                <option value="Lucid">Lucid</option>
+                <option value="Maserati">Maserati</option>
+                <option value="Maybach">Maybach</option>
+                <option value="Mazda">Mazda</option>
+                <option value="McLaren">McLaren</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="MG">MG</option>
+                <option value="Mini">Mini</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Moskvich">Москвич</option>
+                <option value="NIO">NIO</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Omoda">Omoda</option>
+                <option value="Opel">Opel</option>
+                <option value="Ora">Ora</option>
+                <option value="Pagani">Pagani</option>
+                <option value="Peugeot">Peugeot</option>
+                <option value="Polestar">Polestar</option>
+                <option value="Porsche">Porsche</option>
+                <option value="RAM">RAM</option>
+                <option value="Ravon">Ravon</option>
+                <option value="Renault">Renault</option>
+                <option value="Rivian">Rivian</option>
+                <option value="Rolls-Royce">Rolls-Royce</option>
+                <option value="Rover">Rover</option>
+                <option value="Saab">Saab</option>
+                <option value="SEAT">SEAT</option>
+                <option value="Skoda">Skoda</option>
+                <option value="Smart">Smart</option>
+                <option value="Sollers">Sollers</option>
+                <option value="SsangYong">SsangYong</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Tank">Tank</option>
+                <option value="Tata">Tata</option>
+                <option value="Tesla">Tesla</option>
+                <option value="Toyota">Toyota</option>
+                <option value="UAZ">УАЗ</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Volvo">Volvo</option>
+                <option value="Voyah">Voyah</option>
+                <option value="Wuling">Wuling</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="XPeng">XPeng</option>
+                <option value="Zeekr">Zeekr</option>
+                <option value="Zotye">Zotye</option>
+                <option value="other">Другая (вписать вручную)</option>
+            </select>
+            <input type="text" id="brand_other" class="other-input" placeholder="Введите марку" style="display: none;">
+
+            <!-- Модель -->
+            <label for="model">Модель <span>*</span></label>
+            <select name="model" id="model" required>
+                <option value="">-- Сначала выберите марку --</option>
+            </select>
+            <input type="text" id="model_other" class="other-input" placeholder="Введите модель" style="display: none;">
+
+            <!-- Остальные поля -->
+            <div class="row">
+                <div class="col">
+                    <label for="year">Год выпуска <span>*</span></label>
+                    <select name="year" id="year" required>
+                        <option value="">-- Выберите год --</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="fuel">Тип топлива <span>*</span></label>
+                    <select name="fuel" id="fuel" required>
+                        <option value="">-- Выберите --</option>
+                        <option value="Бензин">Бензин</option>
+                        <option value="Дизель">Дизель</option>
+                        <option value="Гибрид">Гибрид</option>
+                        <option value="Электро">Электро</option>
+                        <option value="Газ">Газ</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="engine_volume">Объём двигателя, л / ёмкость батареи, кВт·ч</label>
+                    <input type="number" name="engine_volume" id="engine_volume" step="0.1" min="0" placeholder="Например, 2.0">
+                </div>
+                <div class="col">
+                    <label for="mileage">Текущий пробег, км <span>*</span></label>
+                    <input type="number" name="mileage" id="mileage" required min="0" step="1" placeholder="0">
+                </div>
+            </div>
+
+            <label for="nickname">Псевдоним автомобиля (необязательно)</label>
+            <input type="text" name="nickname" id="nickname" placeholder="Например, «Ласточка»">
+
+            <button type="submit">Зарегистрировать автомобиль</button>
+            <p class="note">* Поля, обязательные для заполнения.</p>
+        </form>
+    </div>
+
+    <script src="form.js"></script>
+</body>
+</html>
